@@ -1,4 +1,4 @@
-package model;
+package com.example.collectionsandsets25.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
@@ -11,9 +11,17 @@ public class Employee {
     @JsonProperty("lastName")
     private final String surname;
 
-    public Employee(String name, String surname) {
+    private int department;
+    private int salary;
+
+    public Employee(String name,
+                    String surname,
+                    int department,
+                    int salary) {
         this.name = name;
         this.surname = surname;
+        this.department = department;
+        this.salary = salary;
     }
 
     public String getName() {
@@ -22,6 +30,22 @@ public class Employee {
 
     public String getSurname() {
         return surname;
+    }
+
+    public int getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(int department) {
+        this.department = department;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
     @Override
@@ -33,7 +57,7 @@ public class Employee {
             return false;
         }
         Employee employee = (Employee) o;
-        return name.equals(employee.name) && surname.equals(employee.surname);
+        return Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname);
     }
 
     @Override
@@ -43,7 +67,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return surname + " " + name;
+        return String.format("ФИ: %s %s, отдел: %d, ЗП: %d", surname, name, department, salary);
     }
 
 }
